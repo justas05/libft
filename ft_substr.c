@@ -15,19 +15,19 @@
 
 #include "libft.h"
 
-char    *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    char *res;
+	char *res;
 
-    if (!s)
-        res = malloc(0);
-    else if (start >= ft_strlen(s))
-    {
-        res = malloc(1);
-        if (res)
-            *res = '\0';
-    }
-    else
-        res = (ft_strndup(s + start, len));
-    return (res);
+	if (!s)
+		res = malloc(0);
+	else if (start >= ft_strlen(s))
+	{
+		res = malloc(1);
+		if (res)
+			*res = '\0';
+	}
+	else
+		res = (ft_strndup(s + start, len));
+	return (res);
 }

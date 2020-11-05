@@ -20,7 +20,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	count = size;
 	src_copy = (char*)src;
 	if (!dest || !src)
-		return 0;
+		return (0);
 	if (size)
 		while (--size && (*dest++ = *src++))
 			;

@@ -14,32 +14,29 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-static char	*mkempty()
-{
-	char *res;
-
-	res = malloc(1);
-	*res = 0;
-	return (res);
-}
-
-char		*ft_strjoin(char *str1, char *str2)
+char		*ft_strtrim(char const *s1, char const *set)
 {
 	char	*res;
+	char	*end_s;
 	size_t	len1;
 
-	if (!str1 || !str2)
-		res = mkempty();
+	if (!s1 || !set)
+		return (malloc(0));
+	len1 = ft_strlen(s1);
+	end_s = (char*)s1 + len1 - 1;
+	while (*s1 && ft_strchr(set, *s1) && len1--)
+		++s1;
+	while (end_s > s1 && ft_strchr(set, *end_s))
+	{
+		--end_s;
+		--len1;
+	}
+	if (len1 && s1 < end_s)
+		res = ft_strndup(s1, len1);
 	else
 	{
-		len1 = ft_strlen(str1);
-		if (!(res = malloc(sizeof(char) * (len1 + ft_strlen(str2) + 1))))
-			res = NULL;
-		else
-		{
-			ft_strcat(res, str1);
-			ft_strcat(res + len1, str2);
-		}
+		res = malloc(1);
+		*res = 0;
 	}
 	return (res);
 }

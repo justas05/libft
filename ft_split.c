@@ -21,6 +21,8 @@ char	**ft_split(char *str, char *sep)
 	size_t	i;
 	int		j;
 
+	if (!str || !sep)
+		return (NULL);
 	count = ft_word_count(str, sep);
 	res = (char**)malloc(sizeof(char*) * (count + 1));
 	i = 0;
