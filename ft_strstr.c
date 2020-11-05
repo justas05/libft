@@ -17,12 +17,14 @@ char	*ft_strstr(const char *str, const char *needle)
 	const char *temp_str;
 	const char *temp_needle;
 
+	if (str && needle && !*str && !*needle)
+		return ((char*)str);
 	while (*str)
 	{
 		temp_needle = needle;
 		temp_str = str;
-		while (*temp_needle && *temp_needle++ == *temp_str++)
-			;
+		while (*temp_needle && *temp_needle == *temp_str++)
+			temp_needle++;
 		if (!*temp_needle)
 			return ((char*)str);
 		++str;

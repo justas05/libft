@@ -14,43 +14,20 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-static size_t	wordc(char **str_1, size_t *j)
+char		*ft_strjoin(char *str1, char *str2)
 {
-	size_t i;
-
-	i = 0;
-	*j = 0;
-	while (*str_1)
-	{
-		i += ft_strlen(*str_1);
-		++*j;
-		str_1++;
-	}
-	return (i);
-}
-
-char			*ft_strjoin(char **str_1, char *str_2)
-{
-	size_t	i;
-	size_t	j;
 	char	*res;
+	size_t	len1;
 
-	j = 0;
-	res = NULL;
-	i = wordc(str_1, &j) + (j - 1) * ft_strlen(str_2);
-	if (j == 0 || !(res = malloc(sizeof(char) * (i + 1))))
+	if (!str1 || !str2)
+		res = malloc(0);
+	else
 	{
-		return (NULL);
-	}
-	while (*str_1)
-	{
-		ft_strcpy(res, *str_1);
-		j--;
-		if (j)
-		{
-			ft_strcpy(res, str_2);
-		}
-		str_1++;
+		len1 = ft_strlen(str1);
+		if (!(res = malloc(sizeof(char) * (len1 + ft_strlen(str2) + 1))))
+			return (NULL);
+		ft_strcat(res, str1);
+		ft_strcat(res + len1, str2);
 	}
 	return (res);
 }
