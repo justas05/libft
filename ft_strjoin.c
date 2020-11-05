@@ -37,6 +37,7 @@ char		*ft_strjoin(char *str1, char *str2)
 			res = NULL;
 		else
 		{
+			*res = 0;
 			ft_strcat(res, str1);
 			ft_strcat(res + len1, str2);
 		}

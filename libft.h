@@ -34,7 +34,6 @@ int					ft_isxdigit(int c);
 int					ft_atoi(const char *nptr);
 char				*ft_itoa(int num);
 void				*ft_calloc(size_t nmemb, size_t size);
-size_t				ft_numlen(int num);
 
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
@@ -57,9 +56,7 @@ char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *dest, const char *src, size_t n);
 size_t				ft_strlcat(char *dest, const char *src, size_t n);
 char				*ft_strjoin(char *str1, char *str2);
-char				**ft_split(char *str, char *sep);
-size_t				ft_word_count(char *str, const char *sep);
-size_t				ft_wordc(char **strs, size_t *j);
+char				**ft_split(char *str, char  c);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));

@@ -12,17 +12,33 @@
 
 #include <unistd.h>
 
-void	ft_putnbr_fd(int n, int fd)
+static unsigned int		nbr_len(int num, int *len)
 {
-	char c;
+	int p;
 
-	c = '0' + n % 10;
-	if (n / 10 == 0)
+	*len = 1;
+	p = 1;
+	while ((num /= 10))
 	{
-		if (n < 0)
-			write(fd, "-", 1);
+		++(*len);
+		p *= 10;
 	}
-	if (n)
-		ft_putnbr_fd(n / 10, fd);
-	write(fd, &c, 1);
+	return (p);
+}
+
+void					ft_putnbr_fd(int n, int fd)
+{
+	char			c;
+	int				len;
+	unsigned int	p;
+
+	p = nbr_len(n, &len);
+	if (n < 0)
+		write(fd, "-", 1);
+	while (len--)
+	{
+		c = '0' + n / p % 10;
+		p /= 10;
+		write(fd, &c, 1);
+	}
 }
