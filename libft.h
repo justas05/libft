@@ -31,6 +31,7 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_isxdigit(int c);
 
+int					ft_abs(int n);
 int					ft_atoi(const char *nptr);
 char				*ft_itoa(int num);
 void				*ft_calloc(size_t nmemb, size_t size);

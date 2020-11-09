@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "libft.h"
 
-static unsigned int		nbr_len(int num, int *len)
+static int		nbr_len(int num, int *len)
 {
 	int p;
 
@@ -26,18 +27,18 @@ static unsigned int		nbr_len(int num, int *len)
 	return (p);
 }
 
-void					ft_putnbr_fd(int n, int fd)
+void			ft_putnbr_fd(int n, int fd)
 {
-	char			c;
-	int				len;
-	unsigned int	p;
+	char	c;
+	int		len;
+	int		p;
 
 	p = nbr_len(n, &len);
 	if (n < 0)
 		write(fd, "-", 1);
 	while (len--)
 	{
-		c = '0' + n / p % 10;
+		c = '0' + ft_abs(n / p % 10);
 		p /= 10;
 		write(fd, &c, 1);
 	}

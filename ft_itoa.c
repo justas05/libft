@@ -42,7 +42,7 @@ char			*ft_itoa(int n)
 		buf[0] = '0';
 	while (n != 0)
 	{
-		buf[--i] = '0' + abs(n % 10);
+		buf[--i] = '0' + ft_abs(n % 10);
 		n /= 10;
 	}
 	return (buf);
