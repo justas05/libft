@@ -1,49 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbooke <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 02:41:30 by hbooke            #+#    #+#             */
-/*   Updated: 2020/10/29 02:41:30 by hbooke           ###   ########.fr       */
+/*   Created: 2020/07/30 00:00:58 by hbooke            #+#    #+#             */
+/*   Updated: 2020/07/30 23:37:16 by hbooke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stddef.h>
-#include <stdlib.h>
 
-static size_t	nbr_len(int num)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t p;
+	t_list	*lst_cpy;
+	t_list	*temp;
 
-	p = 1;
-	while ((num /= 10))
-		++p;
-	return (p);
-}
-
-char			*ft_itoa(int n)
-{
-	char	*buf;
-	size_t	len;
-	size_t	i;
-
-	len = nbr_len(n);
-	i = len + (n < 0);
-	buf = malloc(sizeof(char) * (i + 1));
-	if (!buf)
-		return (NULL);
-	buf[i + 1] = 0;
-	if (n < 0)
-		buf[0] = '-';
-	if (len == 1 && n == 0)
-		buf[0] = '0';
-	while (n != 0)
+	lst_cpy = NULL;
+	temp = NULL;
+	while (lst)
 	{
-		buf[--i] = '0' + abs(n % 10);
-		n /= 10;
+		temp = ft_lstnew(f(lst->content));
+		if (!temp)
+		{
+			ft_lstclear(&lst_cpy, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&lst_cpy, temp);
+		lst = lst->next;
 	}
-	return (buf);
+	return (lst_cpy);
 }
