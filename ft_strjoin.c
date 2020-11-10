@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-static char	*mkempty()
+static char	*mkempty(void)
 {
 	char *res;
 

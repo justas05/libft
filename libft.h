@@ -57,7 +57,7 @@ char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *dest, const char *src, size_t n);
 size_t				ft_strlcat(char *dest, const char *src, size_t n);
 char				*ft_strjoin(char *str1, char *str2);
-char				**ft_split(char *str, char  c);
+char				**ft_split(char *str, char c);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -73,8 +73,8 @@ void				*ft_memmove(void *dest, const void *src, size_t num);
 
 typedef	struct		s_list
 {
-	struct s_list	*next;
 	void			*content;
+	struct s_list	*next;
 }					t_list;
 
 t_list				*ft_lstnew(void *data);

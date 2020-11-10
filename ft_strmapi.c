@@ -18,14 +18,18 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*res;
 	unsigned int	i;
 
-	res = ft_strdup(s);
-	if (res)
+	res = NULL;
+	if (s)
 	{
-		i = 0;
-		while (res[i])
+		res = ft_strdup(s);
+		if (res)
 		{
-			res[i] = f(i, res[i]);
-			++i;
+			i = 0;
+			while (res[i])
+			{
+				res[i] = f(i, res[i]);
+				++i;
+			}
 		}
 	}
 	return (res);
