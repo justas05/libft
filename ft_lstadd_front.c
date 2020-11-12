@@ -14,6 +14,7 @@
 
 void	ft_lstadd_front(t_list **begin_list, t_list *data)
 {
-	data->next = *begin_list;
+	if (data)
+		data->next = *begin_list;
 	*begin_list = data;
 }

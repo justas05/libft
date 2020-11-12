@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_isgraph(int c)
 {
-	return (c >= 33 && c <= 126);
+	return (ft_isprint(c) && !ft_isspace(c));
 }

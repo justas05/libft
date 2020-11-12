@@ -35,7 +35,7 @@ char			*ft_itoa(int n)
 	buf = malloc(sizeof(char) * (i + 1));
 	if (!buf)
 		return (NULL);
-	buf[i + 1] = 0;
+	ft_bzero(buf, i + 1);
 	if (n < 0)
 		buf[0] = '-';
 	if (len == 1 && n == 0)

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbooke <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,8 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*res;
 
-	res = malloc(nmemb * size);
-	if (res)
+	if ((res = malloc(nmemb * size)))
 		ft_bzero(res, nmemb * size);
 	return (res);
 }

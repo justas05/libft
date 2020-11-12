@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
-int		ft_atoi(const char *buf)
+static long		ft_strtol(const char *buf)
 {
-	int res;
-	int sign;
+	long res;
+	long sign;
 
 	res = 0;
 	sign = 1;
@@ -34,4 +35,9 @@ int		ft_atoi(const char *buf)
 		++buf;
 	}
 	return (res * sign);
+}
+
+int				ft_atoi(const char *buf)
+{
+	return ((int)ft_strtol(buf));
 }
