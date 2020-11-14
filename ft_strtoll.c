@@ -51,20 +51,28 @@ static long		ft_get_base(char **buf)
 	return (base);
 }
 
-long			ft_strtol(const char *buf)
+long			ft_strtoll(const char *buf)
 {
 	long res;
 	long sign;
 	long base;
+	long c;
 
+	c = 0;
 	res = 0;
 	sign = 1;
 	ft_skip_spaces(&buf);
 	sign = ft_get_sign(&buf);
 	base = ft_get_base(&buf);
-	while (*buf && ft_isdigit(*buf))
+	while (*buf)
 	{
-		res *= 10;
+		if (ft_isdigit(*buf))
+			c = *buf - '0';
+		else if (base == 16 && ft_isxdigit(*buf))
+			c = *buf - ((ft_isupper(*buf)) ? 'A': 'a') + 10;
+		else
+			break;
+		res *= base;
 		res += *buf - '0';
 		++buf;
 	}
