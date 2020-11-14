@@ -58,11 +58,7 @@ long long		ft_strtoll(const char *buf)
 	int					cutlim;
 	int					base;
 	int					neg;
-	int					any;
-	int					c;
-	const char			*s;
-	
-	s = buf;
+
 	neg = 0;
 	ft_skip_spaces((char**)&s);
 	neg = ft_check_sign((char**)&s);
