@@ -19,18 +19,18 @@ static void		ft_skip_spaces(char **buf)
 		++(*buf);
 }
 
-static long		ft_get_sign(char **buf)
+static long		ft_check_sign(char **buf)
 {
-	long sign;
+	long neg;
 
-	sign = 1;
+	neg = 0;
 	if (**buf == '-' || **buf == '+')
 	{
 		if (**buf == '-')
-			sign = -1;
+			neg = 1;
 		++(*buf);
 	}
-	return (sign);
+	return (neg);
 }
 
 static long		ft_get_base(char **buf)
@@ -51,30 +51,48 @@ static long		ft_get_base(char **buf)
 	return (base);
 }
 
-long			ft_strtoll(const char *buf)
+long long		ft_strtoll(const char *buf)
 {
-	long res;
-	long sign;
-	long base;
-	long c;
-
-	c = 0;
-	res = 0;
-	sign = 1;
-	ft_skip_spaces(&buf);
-	sign = ft_get_sign(&buf);
-	base = ft_get_base(&buf);
-	while (*buf)
+	unsigned long long	acc;
+	unsigned long long	cutoff;
+	int					cutlim;
+	int					base;
+	int					neg;
+	int					any;
+	int					c;
+	const char			*s;
+	
+	s = buf;
+	neg = 0;
+	ft_skip_spaces((char**)&s);
+	neg = ft_check_sign((char**)&s);
+	base = ft_get_base((char**)&s);
+	cutoff = neg ? -(unsigned long long)LLONG_MIN : LLONG_MAX;
+	cutlim = cutoff % (unsigned long long)base;
+	cutoff /= (unsigned long long)base;
+	acc = 0;
+	any = 0;
+	while ((c = *s++))
 	{
-		if (ft_isdigit(*buf))
-			c = *buf - '0';
-		else if (base == 16 && ft_isxdigit(*buf))
-			c = *buf - ((ft_isupper(*buf)) ? 'A': 'a') + 10;
+		if (ft_isdigit(c))
+			c -= '0';
+		else if (ft_isalpha(c))
+			c -= ft_isupper(c) ? 'A' - 10 : 'a' - 10;
 		else
 			break;
-		res *= base;
-		res += *buf - '0';
-		++buf;
+		if (c >= base)
+			break;
+		if (any < 0 || acc > cutoff || (acc == cutoff && c > cutlim))
+			any = -1;
+		else
+		{
+			any = 1;
+			acc = acc * base + c;
+		}
 	}
-	return (res * sign);
+	if (any < 0)
+		acc = neg ? LLONG_MIN : LLONG_MAX;
+	else if (neg)
+		acc = -acc;
+	return (acc);
 }

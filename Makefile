@@ -13,6 +13,7 @@ ft_strchr.c \
 ft_strrchr.c \
 ft_strnstr.c \
 ft_strncmp.c \
+ft_strtoll.c \
 ft_atoi.c \
 ft_isalpha.c \
 ft_isdigit.c \
