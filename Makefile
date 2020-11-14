@@ -14,6 +14,7 @@ ft_strrchr.c \
 ft_strnstr.c \
 ft_strncmp.c \
 ft_atoi.c \
+ft_strtoll.c \
 ft_isalpha.c \
 ft_isdigit.c \
 ft_isalnum.c \
@@ -67,9 +68,9 @@ AR=ar
 RM=rm
 NAME=libft.a
 
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re bonus all
 
-all: $(NAME)
+all: $(NAME) $(OBJS_BONUS)
 
 bonus: $(NAME) $(OBJS_BONUS)
 	$(AR) -rc $(NAME) $(OBJS_BONUS)
