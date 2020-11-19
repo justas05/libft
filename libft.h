@@ -43,6 +43,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
 size_t				ft_strlen(const char *str);
+size_t				ft_strnlen(const char *s, size_t maxlen);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *str, const char *needle);

@@ -49,6 +49,7 @@ ft_strcpy.c \
 ft_strncat.c \
 ft_strncpy.c \
 ft_strndup.c \
+ft_strnlen.c \
 ft_strstr.c \
 ft_swap.c
 SRCS_BONUS=ft_lstnew.c \
